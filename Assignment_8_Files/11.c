@@ -12,14 +12,14 @@ int main(){
     double average_marks = 0;
     double standard_deviation = 0;
 
-    FILE *fptr;
-    fptr = fopen("marks500.txt", "r");
-    if (fptr == NULL){
+    FILE *fptr1;
+    fptr1 = fopen("marks500.txt", "r");
+    if (fptr1 == NULL){
         printf("Error in opening file");
         return 0;
     }
 
-    while (fscanf(fptr, "%d %d", &roll_number[total_students], &marks[total_students]) == 2) {
+    while (fscanf(fptr1, "%d %d", &roll_number[total_students], &marks[total_students]) == 2) {
         if (marks[total_students] > max_marks) {
             max_marks = marks[total_students];
             topper_rollno = roll_number[total_students];
@@ -30,7 +30,7 @@ int main(){
             break;
         }
     }
-    fclose(fptr);
+    fclose(fptr1);
 
     // Calculate average
     average_marks = sum_marks / total_students;
@@ -43,9 +43,10 @@ int main(){
     // Calculate standard deviation
     standard_deviation = sqrt(sum_squared_difference / total_students);
 
-    // Print average and standard deviation
-    printf("Average marks: %.2f\n", average_marks);
-    printf("Standard deviation: %.2f\n", standard_deviation);
-
+    // Storing in new file
+    FILE *fptr2;
+    fptr2=fopen("MarksStats.txt","w");
+    fprintf(fptr2,"Mean -> %f\nAverage -> %f",average_marks,standard_deviation);
+    
     return 0;
 }
