@@ -14,7 +14,7 @@ int main(){
     }
     fclose(fptr);
     
-    printf("No. of characters in file = %d",charCount);
+    printf("No. of characters in the file = %d",charCount);
 
     return 0;
 }
